@@ -17,9 +17,9 @@ module.exports = function (grunt)
 	[
 	  "clean:all",
 	  "copy",
-	  "sass",
-	  "htmlmin",
-	  "uglify"
+	  "sass"
+	  //"htmlmin",
+	  //"uglify"
 	]);
 
 	grunt.registerTask("default",
