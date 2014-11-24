@@ -7,9 +7,10 @@ module.exports = function (grunt)
 	
 	grunt.registerTask("server",
 	[
-	  "build"
-	  //"open:chrome",
-	  //"watch"
+	  "build",
+	  "open:chrome",
+	  "connect",
+	  "watch"
 	]);
 
 	grunt.registerTask("build",
@@ -37,13 +38,32 @@ module.exports = function (grunt)
 		{
 			chrome:
 			{
-				path: "http://localhost/Core",
+				path: "http://localhost:9000",
 				app: "Chrome"
 			},
 			firefox:
 			{
-				path: "http://localhost/Core",
+				path: "http://localhost:9000",
 				app: "Firefox"
+			}
+		},
+		connect:
+		{
+			options:
+			{
+				port: 9000,
+				livereload: 35729,
+				hostname: '*'
+			},
+			livereload:
+			{
+				options:
+				{
+					base:
+						[
+							'<%= config.dist %>'
+						]
+				}
 			}
 		},
 		watch:

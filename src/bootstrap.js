@@ -8,6 +8,6 @@ require(
     {
         require(["domready!"], function(document)
                 {
-                    return angular.bootstrap(document, ["alendar"]);
+                    return angular.bootstrap(document, ["fooding"]);
                 });
     });
