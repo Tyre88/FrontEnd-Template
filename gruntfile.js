@@ -90,12 +90,12 @@ module.exports = function (grunt)
 			markup:
 			{
 				files: ["<%= config.src %>/**/*.html"],
-				tasks: ["newer:copy:markup", "newer:htmlmin"]
+				tasks: ["newer:copy:markup"]
 			},
 			scripts:
 			{
 				files: ["<%= config.src %>/**/*.js"],
-				tasks: ["newer:copy:scripts", "newer:uglify"]
+				tasks: ["newer:copy:scripts"]
 			}
 		},
 		htmlmin:
@@ -217,14 +217,26 @@ module.exports = function (grunt)
 			markup:
 			{
 				files:
-				[
-					{
-						expand: true,
-						cwd: "<%= config.src %>",
-						src: "**/*.html",
-						dest: "<%= config.dist %>"
-					}
-				]
+					[
+						{
+							expand: true,
+							cwd: "<%= config.src %>",
+							src: "**/*.html",
+							dest: "<%= config.dist %>"
+						}
+					]
+			},
+			map:
+			{
+				files:
+					[
+						{
+							expand: true,
+							cwd: "<%= config.src %>",
+							src: "**/*.map",
+							dest: "<%= config.dist %>"
+						}
+					]
 			}
 		},
 		jshint:

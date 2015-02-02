@@ -3,6 +3,9 @@ var require =
         paths:
         {
             "angular": "dependencies/angular/angularjs.min",
+            "angular-animate":"dependencies/angular-animate/angular-animate.min",
+            "angular-aria":"dependencies/angular-aria/angular-aria.min",
+            "angular-material":"dependencies/angular-material/angular-material.min",
             "ui-router": "dependencies/angular/ui-router.min",
             "app": "app",
             "domready": "dependencies/require/domready",
@@ -13,7 +16,7 @@ var require =
         {
             "app":
             {
-                deps: ["ui-router", "ui-bootstrap"]
+                deps: ["ui-router", "ui-bootstrap", "angular-material"]
             },
             "ui-router":
             {
@@ -25,6 +28,18 @@ var require =
                 deps: ["jquery"]
             },
             "ui-bootstrap":
+            {
+                deps: ["angular"]
+            },
+            "angular-material":
+            {
+                deps: ["angular", "angular-animate", "angular-aria"]
+            },
+            "angular-animate":
+            {
+                deps: ["angular"]
+            },
+            "angular-aria":
             {
                 deps: ["angular"]
             }
