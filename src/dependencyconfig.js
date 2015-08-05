@@ -2,15 +2,14 @@ var require =
     {
         paths:
         {
-            "angular": "dependencies/angular/angularjs.min",
+            "angular": "dependencies/angular/angular.min",
             "angular-animate":"dependencies/angular-animate/angular-animate.min",
             "angular-aria":"dependencies/angular-aria/angular-aria.min",
             "angular-material":"dependencies/angular-material/angular-material.min",
-            "ui-router": "dependencies/angular/ui-router.min",
+            "ui-router": "dependencies/ui-router/release/angular-ui-router.min",
             "app": "app",
-            "domready": "dependencies/require/domready",
-            "ui-bootstrap": "dependencies/ui-bootstrap-tpls-0.11.0.min",
-            "jquery": "dependencies/jquery/jquery.min"
+            "ui-bootstrap": "dependencies/angular-bootstrap/ui-bootstrap-tpls.min",
+            "jquery": "dependencies/jquery/dist/jquery.min"
         },
         shim:
         {
@@ -46,6 +45,5 @@ var require =
         },
         deps:
         [
-            "domready"
         ]
     };

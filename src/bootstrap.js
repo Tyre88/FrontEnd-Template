@@ -7,8 +7,5 @@ require(
     ],
     function(angular)
     {
-        require(["domready!"], function(document)
-                {
-                    return angular.bootstrap(document, ["fooding"]);
-                });
+        return angular.bootstrap(document, ["fooding"]);
     });

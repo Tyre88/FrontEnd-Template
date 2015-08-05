@@ -29,6 +29,12 @@ module.exports = function (grunt)
 
 	grunt.initConfig(
 	{
+        options:
+        {
+            src: "src",
+            srcFile: "*.*",
+            dist: "dist"
+        },
 		config:
 		{
 			src: "src",
@@ -94,8 +100,12 @@ module.exports = function (grunt)
 			},
 			scripts:
 			{
+                options:
+                {
+                    nospawn: true
+                },
 				files: ["<%= config.src %>/**/*.js"],
-				tasks: ["newer:copy:scripts"]
+				tasks: ["copy:changedFiles"]
 			}
 		},
 		htmlmin:
@@ -166,6 +176,14 @@ module.exports = function (grunt)
 		},
 		copy:
 		{
+            changedFiles:
+            {
+                expand: true,
+                dot: true,
+                cwd: "<%= options.src %>",
+                src: "<%= options.srcFile %>",
+                dest: "<%= options.dist %>"
+            },
 			fonts:
 			{
 				files:
@@ -210,7 +228,11 @@ module.exports = function (grunt)
 						expand: true,
 						cwd: "<%= config.src %>",
 						src: "**/*.js",
-						dest: "<%= config.dist %>"
+						dest: "<%= config.dist %>",
+                        rename: function(dest, fileName)
+                        {
+                            return "<%= config.dist %>" + "/" + fileName;
+                        }
 					}
 				]
 			},
@@ -249,4 +271,27 @@ module.exports = function (grunt)
 			all: ["<%= config.dist %>/**/*"]
 		}
 	});
+
+    grunt.event.on('watch', function(action, filepath, target){
+
+        var path = require('path');
+        grunt.log.writeln(target + ': ' + filepath + ' might have ' + action);
+        var siteDirectory = filepath.replace("src", "dist").replace(/(\w*.(js|css|ascx))/g, "");
+        siteDirectory = siteDirectory.substr(0, siteDirectory.length - 1);
+
+        //changes changed file source to that of the changed file
+        var option = 'options.src';
+        var srcPath = filepath.replace(/(\w*.(js|css|ascx))/g, "");
+        grunt.log.writeln(option + ' changed to ' + srcPath);
+        grunt.config(option, srcPath);
+
+        var srcFile = filepath.match(/(\w*.(js|css|ascx))/g, "")[0];
+        option = "options.srcFile";
+        grunt.config(option, srcFile);
+
+        //customizes output directory so that file goes to correct place
+        option = 'options.dist';
+        grunt.log.writeln(option + ' changed to ' + siteDirectory);
+        grunt.config(option, siteDirectory);
+    });
 };

@@ -12,7 +12,7 @@ define(
 		}
 		catch(err)
 		{
-			return angular.module('fooding', ['ng', 'ui.router', 'ui.bootstrap'])
+			return angular.module('fooding', ['ng', 'ui.router', 'ui.bootstrap', 'ngMaterial'])
 				.controller('index', ["$scope", "$state", function($scope, $state)
 				{
 					$state.go("home");

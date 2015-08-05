@@ -10,4 +10,4 @@ define(
 				$scope.Title = "Hello from home";
 			}])
 	}
-)
+);
